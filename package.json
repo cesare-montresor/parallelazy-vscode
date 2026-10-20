@@ -1,0 +1,35 @@
+{
+    "name": "parallelazy-vscode",
+    "displayName": "parallelazy-vscode",
+    "description": "Automatically attach VS Code debugpy sessions to parallelazy spawn workers.",
+    "version": "0.0.5",
+    "publisher": "CesareMontresor",
+    "license": "GPLv2",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cesare-montresor/parallelazy-vscode"
+    },
+    "engines": { "vscode": "^1.80.0" },
+    "activationEvents": ["onDebug"],
+    "main": "./extension.js",
+    "icon": "icon.jpg",
+    "contributes": {
+        "configuration": {
+            "title": "parallelazy-vscode",
+            "properties": {
+                "debugpySpawn.host": {
+                    "type": "string",
+                    "default": "localhost",
+                    "description": "Host to attach to."
+                },
+                "debugpySpawn.justMyCode": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether to debug only user code."
+                }
+            }
+        }
+    },
+    "categories": ["Debuggers"],
+    "keywords": ["python", "debugpy", "spawn", "multiprocessing", "pytorch"]
+}
