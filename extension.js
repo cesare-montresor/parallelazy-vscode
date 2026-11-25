@@ -26,12 +26,12 @@ async function attachToWorker(port, name) {
     } catch (e) {
         // If attachment fails, remove from the set so it can be retried later
         attachedPorts.delete(port);
-        console.error(`debugpy-spawn: Failed to attach to ${name} on port ${port}`, e);
+        console.error(`parallelazy: Failed to attach to ${name} on port ${port}`, e);
     }
 }
 
 function activate(context) {
-    console.log('debugpy-spawn: activated');
+    console.log('parallelazy: activated');
 
     // 1. Start the IPC Server on a dynamic port (Port 0)
     server = net.createServer((socket) => {
@@ -42,21 +42,21 @@ function activate(context) {
             
             const port = parseInt(portStr, 10);
             if (!isNaN(port) && name) {
-                console.log(`debugpy-spawn: Received attach request for ${name} on port ${port}`);
+                console.log(`parallelazy: Received attach request for ${name} on port ${port}`);
                 attachToWorker(port, name);
             }
         });
         
         // Handle socket errors gracefully so the server doesn't crash
         socket.on('error', (err) => {
-            console.error('debugpy-spawn: IPC socket error:', err);
+            console.error('parallelazy: IPC socket error:', err);
         });
     });
 
     // Let the OS pick a guaranteed-free port on localhost
     server.listen(0, '127.0.0.1', () => {
         ipcPort = server.address().port;
-        console.log(`debugpy-spawn: IPC server listening on port ${ipcPort}`);
+        console.log(`parallelazy: IPC server listening on port ${ipcPort}`);
     });
 
     // 2. Inject the dynamic port into the Python launch environment
