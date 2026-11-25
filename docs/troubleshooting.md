@@ -4,16 +4,17 @@
 
 Check the following:
 
-1. The extension is enabled and appears as activated in the **Log (Extension
-   Host)** output.
-2. The application was started with a `debugpy` **launch** configuration.
-3. `PluginManager(worker_pydebug=True)` is enabled.
-4. The worker calls `init_debugger()`.
-5. The Python process uses the same environment where `parallelazy` and
+1. The extension is enabled and shows activation logs in the **parallelazy**
+   Output channel (`Output` → `parallelazy`).
+2. The application was started with a `debugpy` **launch** configuration (or
+   **Debug Python File**).
+3. `PluginManager(worker_pydebug=True)` is enabled (which initializes
+   `debugpy` inside each worker automatically).
+4. The Python process uses the same environment where `parallelazy` and
    `debugpy` are installed.
 
-The extension logs its IPC port and received attach requests in the Extension
-Host output.
+The extension logs its IPC port, received attach requests, and any errors in
+the **parallelazy** Output channel.
 
 ## The worker continues instead of waiting
 

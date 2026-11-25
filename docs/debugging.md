@@ -92,7 +92,7 @@ Set these in VS Code settings when needed:
 
 ```json
 {
-  "debugpySpawn.host": "localhost",
+  "debugpySpawn.host": "127.0.0.1",
   "debugpySpawn.justMyCode": false
 }
 ```
